@@ -50,7 +50,49 @@ return array(
                     ),
                 ),
             ),
+            'best-employee' => array(
+                'type'=> 'Literal',
+                'options'=> array(
+                    'route' => '/employee/best',
+                    'defaults' => array(
+                        'controller' => 'Employee',
+                        'action' => 'getEmployee'
+                    )
+                )
+            ),
+            'display-card' => array(
+                'type'=> 'Literal',
+                'options'=> array(
+                    'route' => '/card/display',
+                    'defaults' => array(
+                        'controller' => 'Card',
+                        'action' => 'getCardDisplay'
+                    )
+                )
+            ),
+            'run-doors' => array(
+                'type'=> 'Literal',
+                'options'=> array(
+                    'route' => '/doors/run',
+                    'defaults' => array(
+                        'controller' => 'Door',
+                        'action' => 'runDoors'
+                    )
+                )
+            ),
+            'calculate-string' => array(
+                'type'=> 'Literal',
+                'options'=> array(
+                    'route' => '/calculate/string',
+                    'defaults' => array(
+                        'controller' => 'Calculator',
+                        'action' => 'calculateString'
+                    )
+                )
+            )
+
         ),
+
     ),
     'service_manager' => array(
         'abstract_factories' => array(
@@ -73,8 +115,18 @@ return array(
     ),
     'controllers' => array(
         'invokables' => array(
-            'Application\Controller\Index' => 'Application\Controller\IndexController'
+            'Application\Controller\Index'  => 'Application\Controller\IndexController',
+            'Employee' => 'Application\Controller\EmployeeController',
+            'Card' => 'Application\Controller\CardController',
+            'Door' => 'Application\Controller\DoorController',
+            'Calculator' => 'Application\Controller\CalculatorController'
         ),
+        'aliases' => array(
+            'Application\Controller\Employee' => 'Employee',
+            'Application\Controller\Card' => 'Card',
+            'Application\Controller\Door' => 'Door',
+            'Application\Controller\Calculator' => 'Calculator'
+        )
     ),
     'view_manager' => array(
         'display_not_found_reason' => true,

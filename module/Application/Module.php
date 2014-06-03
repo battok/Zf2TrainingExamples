@@ -36,4 +36,12 @@ class Module
             ),
         );
     }
+
+    public function getServiceConfig(){
+        return [
+            'factories' => ['HundredDoors' => 'Application\Services\HundredDoorsFactory'],
+            'invokables' => ['DoorOpener' => 'Application\Services\DoorOpener']
+        ];
+
+    }
 }

@@ -1,0 +1,9 @@
+<div>
+   <form method="post" action="/doors/run">
+       <input type="text" name="doorStateIndex" />
+       <input type="submit" value="Run" />
+   </form>
+    <?php foreach($doors as $door){?>
+        <?=$door->display();?><br />
+    <?php } ?>
+</div>
