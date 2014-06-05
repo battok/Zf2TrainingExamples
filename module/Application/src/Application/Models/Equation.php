@@ -84,23 +84,4 @@ class Equation {
     {
         return $this->secondOperand;
     }
-
-    public function calculate(){
-        switch ($this->getOperator()){
-            case '+':
-                $this->result = $this->getFirstOperand() + $this->getSecondOperand();
-                break;
-            case '-':
-                $this->result = $this->getFirstOperand() - $this->getSecondOperand();
-                break;
-            case '*':
-                $this->result = $this->getFirstOperand() * $this->getSecondOperand();
-                break;
-            case '/':
-                $this->result = $this->getFirstOperand() / $this->getSecondOperand();
-                break;
-            default:
-                throw new \Exception("Invalid Class State");
-        }
-    }
 } 

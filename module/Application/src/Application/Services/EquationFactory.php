@@ -8,32 +8,11 @@
 
 namespace Application\Services;
 
+use Application\Models\Equation;
 
-use Zend\ServiceManager\ServiceLocatorAwareInterface;
-use Zend\ServiceManager\ServiceLocatorInterface;
-
-class EquationInputParser implements ServiceLocatorAwareInterface {
-
-    private $serviceLocator;
-    /**
-     * Set service locator
-     *
-     * @param ServiceLocatorInterface $serviceLocator
-     */
-    public function setServiceLocator(ServiceLocatorInterface $serviceLocator)
-    {
-        $this->serviceLocator = $serviceLocator;
+class EquationFactory {
+    public function createEquationFromString($input){
+        $equationParts = explode(' ', $input);
+        return new Equation($equationParts[0], $equationParts[1], $equationParts[2]);
     }
-
-    /**
-     * Get service locator
-     *
-     * @return ServiceLocatorInterface
-     */
-    public function getServiceLocator()
-    {
-        return $this->serviceLocator;
-    }
-
-
 }

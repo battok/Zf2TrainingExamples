@@ -19,6 +19,8 @@ class Module
         $eventManager        = $e->getApplication()->getEventManager();
         $moduleRouteListener = new ModuleRouteListener();
         $moduleRouteListener->attach($eventManager);
+
+        $eventManager->attach('dispatch', ['Application\Events\OddEvent', 'echoOddSeconds'], 100);
     }
 
     public function getConfig()
@@ -39,9 +41,15 @@ class Module
 
     public function getServiceConfig(){
         return [
-            'factories' => ['HundredDoors' => 'Application\Services\HundredDoorsFactory'],
-            'invokables' => ['DoorOpener' => 'Application\Services\DoorOpener']
+            'factories' => [
+                'HundredDoors' => 'Application\Services\HundredDoorsFactory'
+            ],
+            'invokables' => [
+                'DoorOpener' => 'Application\Services\DoorOpener',
+                'Calculator' => 'Application\Services\Calculator',
+                'Equation' => 'Application\Services\EquationFactory'
+            ],
+            'shared' => ['Equation' => false]
         ];
-
     }
 }

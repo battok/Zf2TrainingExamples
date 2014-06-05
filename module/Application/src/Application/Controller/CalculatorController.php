@@ -25,9 +25,12 @@ class CalculatorController extends AbstractActionController {
 
         $post = $request->getPost();
         $equationString = $post->get('equationInput');
-        $equationParts = explode(' ', $equationString);
-        $equation = new Equation($equationParts[0], $equationParts[1], $equationParts[2]);
-        $equation->calculate();
+
+        $equationFactory = $this->getServiceLocator()->get('Equation');
+        $equation = $equationFactory->createEquationFromString($equationString);
+
+        $calculator = $this->getServiceLocator()->get('Calculator');
+        $calculator->calculate($equation);
 
         return array('equation' => $equation);
     }

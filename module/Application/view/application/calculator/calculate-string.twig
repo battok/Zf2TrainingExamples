@@ -1,10 +1,15 @@
+{% extends 'layout/layout.twig' %}
+{% block title %} String Calculator {% endblock %}
+{% block content %}
 <form method="post" action="/calculate/string">
     Please input an equation: <input type="text" name="equationInput" />
     <input type="submit" value="Calculate" />
 </form>
 
-<?php if($equation->getResult() > ''){ ?>
+{% if equation.getResult() > '' %}
     <hr />
     <div style="background-color: #808080; color:teal; padding-left: 10px; font-weight: bold">Output:</div>
-    <div style="margin-left: 10px; padding-left: 10px; background-color: lightgray; color: lightseagreen"> -> <?=$equation->getFirstOperand().' '.$equation->getOperator().' '.$equation->getSecondOperand().' = '.$equation->getResult() ?></div>
-<?php } ?>
+    <div style="margin-left: 10px; padding-left: 10px; background-color: lightgray; color: lightseagreen"> -> {{ equation.getFirstOperand() }} {{  equation.getOperator()}} {{ equation.getSecondOperand()}} =  {{ equation.getResult() }}</div>
+{% endif %}
+
+{% endblock %}

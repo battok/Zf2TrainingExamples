@@ -1,9 +1,13 @@
+{% extends 'layout/layout.twig' %}
+{% block title %} 100 Doors Kata {% endblock %}
+{% block content %}
 <div>
    <form method="post" action="/doors/run">
        <input type="text" name="doorStateIndex" />
        <input type="submit" value="Run" />
    </form>
-    <?php foreach($doors as $door){?>
-        <?=$door->display();?><br />
-    <?php } ?>
+    {% for door in doors %}
+        <div>{{ loop.index }}: {{ door.display() }}</div>
+    {% endfor %}
 </div>
+{% endblock %}
