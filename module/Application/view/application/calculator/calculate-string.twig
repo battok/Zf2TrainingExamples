@@ -2,8 +2,8 @@
 {% block title %} String Calculator {% endblock %}
 {% block content %}
 <form method="post" action="/calculate/string">
-    Please input an equation: <input type="text" name="equationInput" />
-    <input type="submit" value="Calculate" />
+    Please input an equation: <input type="text" name="equationInput" value="{{ equation.getResult() }}" />
+    <input type="submit" value="Calculate" /><input type="submit" name="shouldClear" value="clear" />
 </form>
 
 {% if equation.getResult() > '' %}

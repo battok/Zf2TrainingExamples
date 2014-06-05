@@ -3,6 +3,7 @@
 namespace Application\Controller;
 use Zend\Mvc\Controller\AbstractActionController;
 use Application\Models\Door;
+use Zend\Session\Container;
 
 class DoorController extends AbstractActionController{
 	
@@ -12,13 +13,17 @@ class DoorController extends AbstractActionController{
 
     public function runDoorsAction(){
         $request = $this->getRequest();
-        $post = $request->getPost();
+        $container = new Container();
+        if($request->isPost() || $container != null){
+            $post = $request->getPost();
+            $number = $request->isPost() ? $post->get('doorStateIndex') : $container->doorStateIndex;
 
-        $number = $post->get('doorStateIndex');
-        $doorOpener = $this->getServiceLocator()->get('DoorOpener');
-        $doors = $doorOpener->switchDoors($number);
+            $doorOpener = $this->getServiceLocator()->get('DoorOpener');
+            $doors = $doorOpener->switchDoors($number);
+            $container->doorStateIndex = $number;
+        }
 
-        return ['doors'=>$doors];
+        return ['doors' => $doors, 'doorNumber' => $number];
     }
 
 

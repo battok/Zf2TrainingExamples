@@ -8,11 +8,11 @@
 
 namespace Application\Events;
 
-
 use Zend\Mvc\MvcEvent;
 
 class OddEvent {
     public function echoOddSeconds(MvcEvent $event){
+        return;
         if(!microtime() % 2 == 0){
             $date = new \Datetime();
             echo $date->format('h:i:s');

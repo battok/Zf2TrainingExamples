@@ -3,7 +3,7 @@
 {% block content %}
 <div>
    <form method="post" action="/doors/run">
-       <input type="text" name="doorStateIndex" />
+       <input type="text" name="doorStateIndex" value="{{ doorNumber }}" />
        <input type="submit" value="Run" />
    </form>
     {% for door in doors %}
